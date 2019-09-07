@@ -1,6 +1,7 @@
 <template>
   <!-- 最外层套一层 div 避免 gitHubUser 还未加载完时，右侧占满整个浏览器 -->
   <div>
+  <happy-scroll>
     <div class="left-layout-container">
       <div class="user-info">
         <img v-if="gitHubUser" @click="home" :src="gitHubUser.avatar_url">
@@ -9,7 +10,8 @@
       </div>
       <ul class="other-site">
         <li v-for="site in thirdPartySite" :key="site.url" @click="openThirdPartySite(site.url)">
-          <img :src="site.img">
+          <i class="iconfont" :class="site.icon" v-if="site.icon"></i>
+          <img :src="site.img" v-else>
         </li>
       </ul>
       <ul class="left-menu">
@@ -28,10 +30,17 @@
         @click="openThirdPartySite('https://github.com/bingoogolapple/BGAIssueBlog')">BGAIssueBlog</span>
       </div>
     </div>
+  </happy-scroll>
   </div>
 </template>
 <style lang="scss" scoped>
   $indicator-color: #3593f2;
+
+  /deep/.happy-scroll{
+    .happy-scroll-content{
+      width: 100%
+    }
+  }
 
   .left-layout-container {
     display: flex;
@@ -42,7 +51,7 @@
 
   .user-info {
     flex: 0 0 150px;
-    margin-top: 50px;
+    padding-top: 50px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -86,7 +95,8 @@
     li {
       cursor: pointer;
       margin-right: 20px;
-      img {
+      img, i::before {
+        font-size: 25px;
         width: 25px;
         height: 25px;
       }
@@ -137,10 +147,10 @@
   }
 
   .qq-group {
-    flex: 0 0 170px;
+    flex: 0 0 150px;
     margin-top: 50px;
-    margin-left: 55px;
-    width: 90px;
+    // margin-left: 55px;
+    text-align: center;
     span {
       display: block;
       width: 100%;
@@ -185,6 +195,7 @@
 </style>
 <script>
   import { mapGetters } from 'vuex'
+  import scrollBar from 'vue-scroll-bar'
 
   export default {
     computed: {
@@ -209,6 +220,9 @@
       openThirdPartySite (url) {
         window.open(url)
       }
+    },
+    components: {
+      scrollBar
     }
   }
 </script>

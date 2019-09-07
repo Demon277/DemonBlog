@@ -4,6 +4,10 @@ import {
   Loading,
   Message
 } from 'element-ui'
+import HappyScroll from 'vue-happy-scroll'
+// 引入css
+import 'vue-happy-scroll/docs/happy-scroll.css'
+Vue.use(HappyScroll)
 
 Vue.use(Loading)
 Vue.component(Message.name, Message)
