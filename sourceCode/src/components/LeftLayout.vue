@@ -10,8 +10,8 @@
       </div>
       <ul class="other-site">
         <li v-for="site in thirdPartySite" :key="site.url" @click="openThirdPartySite(site.url)">
-          <i class="iconfont" :class="site.icon" v-if="site.icon"></i>
-          <img :src="site.img" v-else>
+          <!-- <i class="iconfont" :class="site.icon" v-if="site.icon"></i> -->
+          <img :src="site.img">
         </li>
       </ul>
       <ul class="left-menu">
